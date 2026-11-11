@@ -1,0 +1,64 @@
+class Pemain:
+    def __init__(self, nama, id_pemain, role, nilai_kill, nilai_assist, nilai_objective):
+        self.nama = nama
+        self.id_pemain = id_pemain
+        self.role = role
+        self.nilai_kill = nilai_kill
+        self.nilai_assist = nilai_assist
+        self.nilai_objective = nilai_objective
+
+    def hitung_skor_akhir(self):
+        skor_akhir = (0.3 * self.nilai_kill) + (0.3 * self.nilai_assist) + (0.4 * self.nilai_objective)
+        return skor_akhir
+
+    def status_performa(self):
+        if self.hitung_skor_akhir() >= 60:
+            return "Unggul"
+        else:
+            return "Perlu Evaluasi"
+
+    def tampilkan_data(self):
+        print(f"Nama           : {self.nama}")
+        print(f"ID Pemain      : {self.id_pemain}")
+        print(f"Role           : {self.role}")
+        print(f"Nilai Kill     : {self.nilai_kill}")
+        print(f"Nilai Assist   : {self.nilai_assist}")
+        print(f"Nilai Objective: {self.nilai_objective}")
+        print(f"Skor Akhir     : {self.hitung_skor_akhir():.2f}")
+        print(f"Status Performa: {self.status_performa()}")
+        print("-" * 35)
+
+
+print("=" * 45)
+print(" SINTEM PENILAIAN PERFORMA PEMAIN GAME")
+print("=" * 45)
+
+daftar_pemain = []
+
+jumlah_pemain = int(input("Masukkan jumlah pemain: "))
+
+for i in range(jumlah_pemain):
+    print(f"\nData Pemain ke-{i + 1}")
+    nama = input("Nama           : ")
+    id_pemain = input("ID Pemain      : ")
+    role = input("Role           : ")
+    nilai_kill = float(input("Nilai Kill     : "))
+    nilai_assist = float(input("Nilai Assist   : "))
+    nilai_objective = float(input("Nilai Objective: "))
+    
+    pemain_baru = Pemain(nama, id_pemain, role, nilai_kill, nilai_assist, nilai_objective)
+    daftar_pemain.append(pemain_baru)
+
+print("\n" + "=" * 70)
+print("REKAPITULASI PERFORMA PEMAIN")
+print("=" * 70)
+print(f"{'No':<3} | {'Nama':<10} | {'ID Pemain':<11} | {'Role':<10} | {'Skor Akhir':<10} | {'Status':<15}")
+print("-" * 70)
+
+for i in range(len(daftar_pemain)):
+    p = daftar_pemain[i]
+    # skor = p.hitung_skor_akhir()
+    # status = p.status_performa()
+    print(f"{i + 1:<3} | {p.nama:<10} | {p.id_pemain:<11} | {p.role:<10} | {p.hitung_skor_akhir():<10.2f} | {p.status_performa():<15}")
+
+print("=" * 70)
